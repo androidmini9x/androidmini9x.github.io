@@ -10,7 +10,9 @@ const slideLeftSidebar = () => {
     const elSidebar = document.getElementById("sidebar");
     const elRightArea = document.getElementById("right-area");
     // elSidebar.classList.toggle("translate-x-0");
-    elSidebar.classList.toggle("translate-x-96");
+    // elSidebar.classList.toggle("translate-x-56");
+    // elRightArea.classList.toggle("toggleRightArea");
+    elSidebar.classList.toggle("hidden");
     elRightArea.classList.toggle("toggleRightArea");
 };
 

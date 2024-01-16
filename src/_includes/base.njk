@@ -7,9 +7,9 @@
 
 <body
     class="dark:text-gray-300 dark:bg-dark-body bg-white text-gray-900 overflow-x-hidden sm:overflow-auto">
-    <div class="grid grid-flow-col grid-cols-small sm:grid-cols-regular h-screen" dir="rtl">
+    <div class="grid grid-flow-col sm:grid-cols-regular h-screen" dir="rtl">
         <div id="sidebar"
-            class="sidebar transition-transform translate-x-96 sm:translate-x-0 transform sm:transition-none">
+            class="hidden sm:block sidebar transition-transform sm:translate-x-0 transform sm:transition-none">
             {% include "sidebar.njk" %}
         </div>
         <div id="right-area"
