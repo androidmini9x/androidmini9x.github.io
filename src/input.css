@@ -12,7 +12,7 @@ img {
 }
 
 .toggleRightArea {
-    @apply -translate-x-120
+    @apply -translate-x-96
 }
 
 /* Left sidebar */
