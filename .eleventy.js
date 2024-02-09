@@ -3,6 +3,7 @@ const { ar } = require('date-fns/locale');
 const pluginTOC = require('eleventy-plugin-toc')
 const markdownIt = require('markdown-it')
 const markdownItAnchor = require('markdown-it-anchor')
+const embedEverything = require("eleventy-plugin-embed-everything");
 
 const globalConfig = require("./src/_data/globalConfig");
 
@@ -93,6 +94,9 @@ module.exports = function(eleventyConfig) {
 
     // Add eleventy-plugin-toc
     eleventyConfig.addPlugin(pluginTOC);
+
+    // Add eleventy-plugin-embed-everything
+    eleventyConfig.addPlugin(embedEverything);
 
     // Set Markdown library
     eleventyConfig.setLibrary(
