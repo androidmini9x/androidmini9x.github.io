@@ -4,6 +4,7 @@ const pluginTOC = require('eleventy-plugin-toc')
 const markdownIt = require('markdown-it')
 const markdownItAnchor = require('markdown-it-anchor')
 const embedEverything = require("eleventy-plugin-embed-everything");
+const Image = require("@11ty/eleventy-img");
 
 const globalConfig = require("./src/_data/globalConfig");
 
@@ -103,6 +104,26 @@ module.exports = function(eleventyConfig) {
         'md',
         markdownIt().use(markdownItAnchor)
     );
+
+    // Adding inline SVGs to Eleventy.js
+    eleventyConfig.addNunjucksAsyncShortcode("svgIcon", async (filename, className = "") => {
+        const metadata = await Image(`./assets/images/${filename}`, {
+            formats: ["svg"],
+            dryRun: true,
+            
+        })
+
+        let svgString = metadata.svg[0].buffer.toString();
+
+        if (className) {
+            svgString = svgString.replace(
+                /<svg([^>]*)>/,
+                `<svg$1 class="${className}">`
+            );
+        }       
+
+        return svgString;
+    })
 
     return {
         dir: {
