@@ -1,136 +1,79 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Islamic Themed Portfolio</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Blog — Your Name</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3 { font-family: 'Cinzel', serif; }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes zoomIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .fade-up { animation: fadeInUp 0.8s ease-out forwards; }
-    .zoom-in { animation: zoomIn 0.8s ease-out forwards; }
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-    .tile-pattern {
-      background-image: url('https://www.transparenttextures.com/patterns/islamic.png');
-      background-size: 200px;
-      background-repeat: repeat;
-      opacity: 0.08;
-    }
+    .reveal { opacity:0; transform: translateY(12px); transition: all 520ms ease; }
+    .reveal.visible { opacity:1; transform: translateY(0); }
+    .card { border-radius: 14px; overflow: hidden; }
+    .motif { background-image: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.03), transparent 20%); }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100">
-
-  <!-- HEADER -->
-  <header class="relative bg-emerald-700 text-white overflow-hidden">
-    <div class="absolute inset-0 tile-pattern"></div>
-    <div class="relative max-w-6xl mx-auto px-6 py-20 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold fade-up">Your Name</h1>
-      <p class="mt-4 text-lg fade-up delay-1">Software Engineer | Problem Solver | Lifelong Learner</p>
-      <div class="mt-6 flex justify-center gap-4 fade-up delay-2">
-        <a href="#contact" class="px-5 py-2 bg-amber-500 text-white rounded-full shadow hover:bg-amber-400 transition">Contact Me</a>
-        <a href="resume.pdf" class="px-5 py-2 border border-white rounded-full hover:bg-white hover:text-emerald-700 transition">Download Resume</a>
-      </div>
+<body class="min-h-screen bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+  <header class="py-6 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+      <a href="index.html" class="font-semibold">Your Name</a>
+      <a href="projects.html" class="text-sm text-emerald-700">Projects</a>
     </div>
   </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="max-w-6xl mx-auto px-6 py-16 relative">
-    <div class="absolute inset-0 tile-pattern"></div>
-    <div class="relative">
-      <h2 class="text-3xl font-bold mb-6 text-emerald-700">About Me</h2>
-      <p class="mb-4">I’m a passionate software engineer with experience in building high-quality web applications. My interests include software architecture, performance optimization, and Islamic art-inspired design.</p>
-      <p class="mb-4">I combine technical skill with creativity, believing that great code and great design can work hand-in-hand to make technology more meaningful.</p>
-    </div>
-  </section>
+  <main class="max-w-6xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-extrabold">Articles</h1>
+    <p class="text-slate-600 dark:text-slate-300 mt-2 max-w-prose">Thoughts on design, accessibility, and building respectful tech grounded in Islamic aesthetics.</p>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="max-w-6xl mx-auto px-6 py-16 bg-white dark:bg-slate-800 rounded-lg shadow relative overflow-hidden">
-    <div class="absolute inset-0 tile-pattern"></div>
-    <div class="relative">
-      <h2 class="text-3xl font-bold mb-8 text-emerald-700">Work Experience</h2>
-      <div class="space-y-6">
-        <div class="zoom-in">
-          <h3 class="text-xl font-semibold flex items-center gap-2 text-amber-600">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /></svg>
-            Senior Software Engineer - XYZ Corp
-          </h3>
-          <p class="text-sm text-slate-500">2022 - Present</p>
-          <p>Lead a team building scalable SaaS platforms, optimizing performance by 40% and implementing modern UI/UX principles.</p>
+    <section class="mt-8">
+      <!-- Post card -->
+      <article class="card bg-white/70 dark:bg-slate-900/60 p-8 reveal rounded-none border-l-8 mt-4">
+        <div class="flex items-start gap-4">
+          <div>
+            <a href="post.html?slug=design-principles-from-islamic-geometry" class="text-xl font-semibold hover:text-emerald-600">Design Principles from Islamic Geometry</a>
+            <div class="text-xs text-slate-500 mt-1">June 10, 2025 • UI / Design</div>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">How repeated geometry, rhythm and proportion in Islamic art can inform modern UI systems — building components that feel timeless.</p>
+            <div class="mt-3">
+              <a class="text-emerald-600 text-sm" href="post.html?slug=design-principles-from-islamic-geometry">Read →</a>
+            </div>
+          </div>
         </div>
-        <div class="zoom-in delay-1">
-          <h3 class="text-xl font-semibold flex items-center gap-2 text-amber-600">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /></svg>
-            Frontend Developer - ABC Solutions
-          </h3>
-          <p class="text-sm text-slate-500">2020 - 2022</p>
-          <p>Developed responsive, accessible UIs using TailwindCSS and vanilla JavaScript, focusing on Islamic-themed visual branding.</p>
+      </article>
+      <!-- Post card -->
+      <article class="card bg-white/70 dark:bg-slate-900/60 p-8 reveal rounded-none border-l-8 mt-4">
+        <div class="flex items-start gap-4">
+          <div>
+            <a href="post.html?slug=design-principles-from-islamic-geometry" class="text-xl font-semibold hover:text-emerald-600">Design Principles from Islamic Geometry</a>
+            <div class="text-xs text-slate-500 mt-1">June 10, 2025 • UI / Design</div>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">How repeated geometry, rhythm and proportion in Islamic art can inform modern UI systems — building components that feel timeless.</p>
+            <div class="mt-3">
+              <a class="text-emerald-600 text-sm" href="post.html?slug=design-principles-from-islamic-geometry">Read →</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <!-- SKILLS -->
-  <section id="skills" class="max-w-6xl mx-auto px-6 py-16 relative">
-    <div class="absolute inset-0 tile-pattern"></div>
-    <div class="relative">
-      <h2 class="text-3xl font-bold mb-8 text-emerald-700">Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div class="fade-up"><svg class="mx-auto w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2l9 4-9 4-9-4 9-4z" /></svg><p>JavaScript</p></div>
-        <div class="fade-up delay-1"><svg class="mx-auto w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /></svg><p>HTML/CSS</p></div>
-        <div class="fade-up delay-2"><svg class="mx-auto w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2l4 20H8l4-20z" /></svg><p>TailwindCSS</p></div>
-        <div class="fade-up delay-3"><svg class="mx-auto w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M2 12l20 0" /></svg><p>APIs</p></div>
-      </div>
-    </div>
-  </section>
+      <article class="card bg-white/70 dark:bg-slate-900/60 p-6 reveal rounded-none border-l-8 mt-4">
+        <div class="flex items-start gap-4">
+          <div class="w-16 h-16 rounded-lg motif flex items-center justify-center">
+            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none"><path d="M12 2 L20 8 L12 14 L4 8 Z" stroke="currentColor"/></svg>
+          </div>
+          <div>
+            <a href="post.html?slug=building-accessible-qibla-compass" class="text-xl font-semibold hover:text-emerald-600">Building an Accessible Qibla Compass</a>
+            <div class="text-xs text-slate-500 mt-1">Nov 08, 2024 • Accessibility</div>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">Accessibility-first approach for spatial tools: semantic markup, keyboard support and graceful geolocation fallbacks.</p>
+            <div class="mt-3">
+              <a class="text-emerald-600 text-sm" href="post.html?slug=building-accessible-qibla-compass">Read →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
 
-  <!-- EDUCATION -->
-  <section id="education" class="max-w-6xl mx-auto px-6 py-16 bg-white dark:bg-slate-800 rounded-lg shadow relative">
-    <div class="absolute inset-0 tile-pattern"></div>
-    <div class="relative">
-      <h2 class="text-3xl font-bold mb-8 text-emerald-700">Education</h2>
-      <div class="fade-up">
-        <h3 class="text-xl font-semibold">B.Sc. in Computer Science - University Name</h3>
-        <p class="text-sm text-slate-500">2016 - 2020</p>
-        <p>Graduated with honors. Specialized in software development, algorithms, and UI/UX design.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="max-w-6xl mx-auto px-6 py-16 relative">
-    <div class="absolute inset-0 tile-pattern"></div>
-    <div class="relative">
-      <h2 class="text-3xl font-bold mb-8 text-emerald-700">Contact</h2>
-      <form action="#" class="space-y-4 max-w-xl">
-        <input type="text" placeholder="Your Name" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-amber-400">
-        <input type="email" placeholder="Your Email" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-amber-400">
-        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-amber-400"></textarea>
-        <button class="px-5 py-2 bg-amber-500 text-white rounded shadow hover:bg-amber-400 transition">Send</button>
-      </form>
-    </div>
-  </section>
-
-  <footer class="bg-emerald-700 text-white py-6 mt-10 text-center relative">
-    <div class="absolute inset-0 tile-pattern"></div>
-    <div class="relative">
-      <p>&copy; 2025 Your Name. Built with ♥ and Islamic-inspired design.</p>
-    </div>
-  </footer>
-
+  <script>
+    // reveal
+    const ro = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');})},{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  </script>
 </body>
 </html>
