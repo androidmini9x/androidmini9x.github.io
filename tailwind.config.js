@@ -37,10 +37,6 @@ module.exports = {
         "sidebar-light":
           "radial-gradient(circle,rgb(33 41 83) 0%,rgb(37 21 63) 100%)"
       }),
-      borderWidth: (theme) => ({
-        ...theme("width"),
-        1: "1px"
-      }),
       gradientColorStops: (theme) => ({
         ...theme("colors"),
         "dark-outer": "#1B1B1E",
