@@ -1,14 +1,15 @@
-const { format, formatISO, getYear } = require("date-fns");
-const { ar } = require('date-fns/locale');
-const pluginTOC = require('eleventy-plugin-toc')
-const markdownIt = require('markdown-it')
-const markdownItAnchor = require('markdown-it-anchor')
-const embedEverything = require("eleventy-plugin-embed-everything");
-const Image = require("@11ty/eleventy-img");
+import { format, formatISO, getYear } from "date-fns";
+import { ar } from 'date-fns/locale';
+import pluginTOC from 'eleventy-plugin-toc';
+import markdownIt from 'markdown-it';
+import markdownItAnchor from 'markdown-it-anchor';
+import embedEverything from "eleventy-plugin-embed-everything";
+import Image from "@11ty/eleventy-img";
+import { I18nPlugin } from "@11ty/eleventy";
 
-const globalConfig = require("./src/_data/globalConfig");
+import globalConfig from "./src/_data/globalConfig.js";
 
-module.exports = function(eleventyConfig) {
+export default function(eleventyConfig) {
 
     // Copy assets to _site
     eleventyConfig.addPassthroughCopy('assets');
@@ -73,9 +74,14 @@ module.exports = function(eleventyConfig) {
         return format(date, "MMM", {locale: ar});
     });
 
-    // Extracts readable date of a date
+    // Extracts readable date of a date - Arabic
     eleventyConfig.addNunjucksFilter("readableDate", function (date) {
         return format(date, "dd MMM, yyyy", {locale: ar});
+    });
+    
+    // Extracts readable date of a date
+    eleventyConfig.addNunjucksFilter("readableDateEN", function (date) {
+        return format(date, "MMM dd, yyyy");
     });
 
     // Create custom collection for getting the newest 5 updates
@@ -125,6 +131,11 @@ module.exports = function(eleventyConfig) {
         return svgString;
     })
 
+    // Add I18n
+	eleventyConfig.addPlugin(I18nPlugin, {
+        defaultLanguage: 'en'
+    });
+
     return {
         dir: {
             input: 'src',
@@ -142,6 +153,7 @@ function extractExcerpt(article) {
         return null;
     }
 
+    let excerpt = null;
     const content = article.templateContent;
 
     const separatorsList = [

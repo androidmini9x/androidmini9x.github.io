@@ -2,6 +2,7 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "",
+	"type": "module",
   "main": "index.js",
   "scripts": {
     "start": "rm -rf _site && npx @11ty/eleventy --serve --quiet & npx tailwindcss -i ./src/input.css -o ./_site/style.css --watch",

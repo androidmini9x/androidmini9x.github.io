@@ -1,4 +1,4 @@
-module.exports = [
+export default [
     {
         name: "AWS Certified Cloud Practitioner",
         by: "Amazon",

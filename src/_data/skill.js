@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     skills: [
         {
             name: "Programming Languages",

@@ -1,6 +1,6 @@
-require('dotenv').config()
+// require('dotenv').config()
 
-module.exports = {
+export default {
     title: "{ AndroidMini9x }",
     url: process.env.URL || "http://localhost:8080",
     image: "/assets/images/sidebar_profile.jpg",
