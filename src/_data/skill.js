@@ -2,6 +2,7 @@ export default {
     skills: [
         {
             name: "Programming Languages",
+            name_ar: "لغات البرمجة",
             items: [
                 {name: "Java", img: "Java.svg"},
                 {name: "C/C++", img: "C++ (CPlusPlus).svg"},
@@ -16,6 +17,7 @@ export default {
         },
         {
             name: "Frameworks & Libraries",
+            name_ar: "الأُطُر والمكتبات",
             items: [
                 {name: "JAVA EE/Spring", img: "Spring.svg"},
                 {name: "React.js/React Native", img: "React.svg"},
@@ -31,6 +33,7 @@ export default {
         },
         {
             name: "Technologies and Tools",
+            name_ar: "التقنيات والأدوات",
             items: [
                 {name: "Node.js", img: "Node.js.svg"},
                 {name: "Linux", img: "Linux.svg"},

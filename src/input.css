@@ -101,3 +101,9 @@
 .content img {
     max-width: 100%;
 }
+
+/* For specify font for Arabic Page  */
+main[dir="rtl"] {
+    font-family: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    line-height: normal;
+}
