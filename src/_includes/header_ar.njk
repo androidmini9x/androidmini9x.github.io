@@ -1,0 +1,35 @@
+<header id="navbar" class="sticky top-0 z-30 bg-white/60 dark:bg-slate-900/60 backdrop-blur border-b border-white/10 transition-opacity duration-500 ease-in-out opacity-100" dir="rtl">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="{{ "/" }}" class="flex items-center gap-3">
+            <div
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-[color:var(--accent-from)] to-[color:var(--accent-to)] flex items-center justify-center text-white shadow">
+                <!-- geometric emblem -->
+                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#7a86b3" stroke="#7a86b3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="256" cy="256" r="256"></circle> <g> <rect x="125.12" y="117.632" style="fill:#FFFFFF;" width="194.8" height="16"></rect> <rect x="192.16" y="175.456" style="fill:#FFFFFF;" width="194.8" height="16"></rect> <rect x="125.12" y="248.496" style="fill:#FFFFFF;" width="194.8" height="16"></rect> <rect x="192.16" y="306.4" style="fill:#FFFFFF;" width="194.8" height="16"></rect> <rect x="125.12" y="379.376" style="fill:#FFFFFF;" width="194.8" height="16"></rect> </g> </g></svg>
+            </div>
+            <div class="leading-tight">
+                <div class="font-semibold">{{ globalConfig.title }}</div>
+                <div class="text-xs text-slate-600 dark:text-slate-300">Software Engineer</div>
+            </div>
+        </a>
+
+        <nav class="flex items-center gap-4">
+            <a class="text-sm hover:text-emerald-600 focus-ring" href="{{ "/blog" | locale_url }}">المدونة</a>
+            <a class="text-sm hover:text-emerald-600 focus-ring" href="/projects">المشاريع</a>
+
+            <!-- Language switcher -->
+            <div class="relative">
+                <select id="languageSelect" class="appearance-none bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-3 py-1 text-sm focus-ring cursor-pointer shadow-sm">
+                <option value="en">🇬🇧 English</option>
+                <option value="ar">🇸🇦 العربية</option>
+                </select>
+            </div>
+
+            <button id="themeToggle" aria-label="Toggle theme" class="ml-2 p-2 rounded focus-ring">
+                <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 3v1M12 20v1M4.2 4.2l.7.7M18.1 18.1l.7.7M1 12h1M22 12h1M4.2 19.8l.7-.7M18.1 5.9l.7-.7M12 6a6 6 0 100 12 6 6 0 000-12z" />
+                </svg>
+            </button>
+        </nav>
+    </div>
+</header>
