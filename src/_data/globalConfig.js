@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 
-dotenv.confi();
+dotenv.config();
 
 export default {
     title: "{ AndroidMini9x }",
