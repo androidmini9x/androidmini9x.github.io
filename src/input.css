@@ -45,5 +45,4 @@
 .delay-2 { animation-delay: 0.4s; }
 .delay-3 { animation-delay: 0.6s; }
 
-.card { border-radius: 14px; overflow: hidden; }
-.motif { background-image: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.03), transparent 20%); }
+.card { overflow: hidden; }
