@@ -3,77 +3,244 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Blog — Your Name</title>
+  <title>Projects — Your Name</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .reveal { opacity:0; transform: translateY(12px); transition: all 520ms ease; }
+    .tile {
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .tile:focus, .tile:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 40px rgba(2,6,23,0.12) }
+    /* mosaics: using grid + transform to mimic zellige */
+    .mosaic > * { transform-origin: center; }
+    .pattern-bg{
+      background-image:
+        radial-gradient(circle at 40% 40%, rgba(0,0,0,0.03), transparent 12%),
+        linear-gradient(135deg, rgba(255,255,255,0.03), transparent 30%);
+    }
+    /* reveal effect */
+    .reveal { opacity: 0; transform: translateY(12px); transition: all 500ms ease; }
     .reveal.visible { opacity:1; transform: translateY(0); }
-    .card { border-radius: 14px; overflow: hidden; }
-    .motif { background-image: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.03), transparent 20%); }
+    /* modal */
+    .modal-backdrop { background: rgba(2,6,23,0.6); backdrop-filter: blur(3px); }
   </style>
 </head>
-<body class="min-h-screen bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">
-  <header class="py-6 border-b border-white/5">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
-      <a href="index.html" class="font-semibold">Your Name</a>
-      <a href="projects.html" class="text-sm text-emerald-700">Projects</a>
+<body class="bg-emerald-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen">
+  <header class="sticky top-0 z-30 bg-white/60 dark:bg-slate-900/60 backdrop-blur border-b border-white/10">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <!-- Logo & name -->
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[color:var(--accent-from)] to-[color:var(--accent-to)] flex items-center justify-center text-white shadow">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 L20 8 L12 14 L4 8 Z" />
+        </svg>
+      </div>
+      <div class="leading-tight">
+        <div class="font-semibold">Your Name</div>
+        <div class="text-xs text-slate-600 dark:text-slate-300">Software Engineer</div>
+      </div>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="flex items-center gap-4">
+      <a class="text-sm hover:text-emerald-600 focus-ring" href="projects.html">Projects</a>
+      <a class="text-sm hover:text-emerald-600 focus-ring" href="blog.html">Blog</a>
+      <a class="text-sm hover:text-emerald-600 focus-ring" href="#contact">Contact</a>
+
+      <!-- Language switcher -->
+      <div class="relative">
+        <select id="languageSelect" class="appearance-none bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-3 py-1 text-sm focus-ring cursor-pointer shadow-sm">
+          <option value="en">🇬🇧 English</option>
+          <option value="tr">🇹🇷 Türkçe</option>
+          <option value="ar">🇸🇦 العربية</option>
+        </select>
+      </div>
+
+      <!-- Theme toggle -->
+      <button id="themeToggle" aria-label="Toggle theme" class="ml-2 p-2 rounded focus-ring">
+        <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3v1M12 20v1M4.2 4.2l.7.7M18.1 18.1l.7.7M1 12h1M22 12h1M4.2 19.8l.7-.7M18.1 5.9l.7-.7M12 6a6 6 0 100 12 6 6 0 000-12z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+
+  <main class="max-w-6xl mx-auto px-6 pb-16">
+    <div class="flex items-baseline justify-between">
+      <div>
+        <h1 class="text-3xl font-extrabold">Selected Projects</h1>
+        <p class="text-slate-600 dark:text-slate-300 mt-2 max-w-prose">A sampler of engineering systems and accessible experiences with an Islamic visual language.</p>
+      </div>
+
+      <div class="text-sm text-slate-600 dark:text-slate-300">Tip: use keyboard to navigate tiles (Tab) and Enter to open details.</div>
     </div>
-  </header>
 
-  <main class="max-w-6xl mx-auto px-6 py-10">
-    <h1 class="text-3xl font-extrabold">Articles</h1>
-    <p class="text-slate-600 dark:text-slate-300 mt-2 max-w-prose">Thoughts on design, accessibility, and building respectful tech grounded in Islamic aesthetics.</p>
+    <!-- Filters -->
+    <div class="mt-6 flex gap-3 reveal">
+      <button class="px-3 py-1 rounded bg-white/80 dark:bg-slate-800/70 border">All</button>
+      <button class="px-3 py-1 rounded bg-white/50 dark:bg-transparent border">Web</button>
+      <button class="px-3 py-1 rounded bg-white/50 dark:bg-transparent border">Mobile</button>
+    </div>
 
-    <section class="mt-8">
-      <!-- Post card -->
-      <article class="card bg-white/70 dark:bg-slate-900/60 p-8 reveal rounded-none border-l-8 mt-4">
-        <div class="flex items-start gap-4">
-          <div>
-            <a href="post.html?slug=design-principles-from-islamic-geometry" class="text-xl font-semibold hover:text-emerald-600">Design Principles from Islamic Geometry</a>
-            <div class="text-xs text-slate-500 mt-1">June 10, 2025 • UI / Design</div>
-            <p class="mt-2 text-slate-600 dark:text-slate-300">How repeated geometry, rhythm and proportion in Islamic art can inform modern UI systems — building components that feel timeless.</p>
-            <div class="mt-3">
-              <a class="text-emerald-600 text-sm" href="post.html?slug=design-principles-from-islamic-geometry">Read →</a>
+    <!-- Tile grid -->
+    <section class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mosaic">
+      <!-- tile example. Duplicate/change as needed -->
+      <article tabindex="0" role="button" aria-label="Open project Qibla Visualizer" class="tile bg-white/70 dark:bg-slate-900/60 p-4 reveal" data-title="Qibla Visualizer" data-desc="Interactive Qibla direction visualizer with animated compass and offline caching." data-year="2024" data-tags="React,Geo,Maps">
+        <div class="h-full flex flex-col">
+          <div class="flex items-start justify-between">
+            <div class="text-xs text-slate-500">2024</div>
+            <div class="text-xs text-amber-600 font-medium">Featured</div>
+          </div>
+
+          <div class="grow flex items-center justify-center">
+            <!-- decorative geometric thumbnail -->
+            <div class="w-40 h-40 rounded-lg pattern-bg flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-32 h-32" fill="none" stroke="currentColor"><g stroke-width="1.3" stroke-opacity="0.9"><path d="M50 10 L70 30 L50 50 L30 30 Z"/><circle cx="50" cy="50" r="8"/></g></svg>
             </div>
+          </div>
+
+          <div class="mt-4">
+            <h3 class="font-semibold">Qibla Visualizer</h3>
+            <p class="text-xs text-slate-500 mt-1">Compass, map integration and progressive caching.</p>
+          </div>
+
+          <div class="mt-3 flex gap-2">
+            <button class="text-xs px-3 py-1 rounded border focus-ring openProject">Open</button>
+            <a href="#" class="text-xs px-3 py-1 rounded border">Repository</a>
           </div>
         </div>
       </article>
-      <!-- Post card -->
-      <article class="card bg-white/70 dark:bg-slate-900/60 p-8 reveal rounded-none border-l-8 mt-4">
-        <div class="flex items-start gap-4">
-          <div>
-            <a href="post.html?slug=design-principles-from-islamic-geometry" class="text-xl font-semibold hover:text-emerald-600">Design Principles from Islamic Geometry</a>
-            <div class="text-xs text-slate-500 mt-1">June 10, 2025 • UI / Design</div>
-            <p class="mt-2 text-slate-600 dark:text-slate-300">How repeated geometry, rhythm and proportion in Islamic art can inform modern UI systems — building components that feel timeless.</p>
-            <div class="mt-3">
-              <a class="text-emerald-600 text-sm" href="post.html?slug=design-principles-from-islamic-geometry">Read →</a>
+
+      <!-- Duplicate a few more sample tiles -->
+      <article tabindex="0" class="tile bg-white/70 dark:bg-slate-900/60 p-4 reveal" data-title="Dua Scheduler" data-desc="Backend service for scheduling dua reminders." data-year="2023" data-tags="Node,Express">
+        <div class="h-full flex flex-col">
+          <div class="flex items-start justify-between">
+            <div class="text-xs text-slate-500">2023</div>
+            <div class="text-xs text-slate-500">Backend</div>
+          </div>
+
+          <div class="grow flex items-center justify-center">
+            <div class="w-36 h-36 rounded-lg pattern-bg flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-24 h-24"><path d="M50 20 a30 30 0 1 0 0.0001 0" stroke="currentColor" fill="none"/></svg>
             </div>
+          </div>
+
+          <div class="mt-4">
+            <h3 class="font-semibold">Dua Scheduler</h3>
+            <p class="text-xs text-slate-500 mt-1">Timezone-aware reminders & admin dashboard.</p>
+          </div>
+
+          <div class="mt-3 flex gap-2">
+            <button class="text-xs px-3 py-1 rounded border focus-ring openProject">Open</button>
+            <a href="#" class="text-xs px-3 py-1 rounded border">Live</a>
           </div>
         </div>
       </article>
 
-      <article class="card bg-white/70 dark:bg-slate-900/60 p-6 reveal rounded-none border-l-8 mt-4">
-        <div class="flex items-start gap-4">
-          <div class="w-16 h-16 rounded-lg motif flex items-center justify-center">
-            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none"><path d="M12 2 L20 8 L12 14 L4 8 Z" stroke="currentColor"/></svg>
+      <article tabindex="0" class="tile bg-white/70 dark:bg-slate-900/60 p-4 reveal" data-title="Hadith Search (PWA)" data-desc="Offline-capable PWA for hadith search with fuzzy matching." data-year="2025" data-tags="PWA,Search">
+        <div class="h-full flex flex-col">
+          <div class="flex items-start justify-between">
+            <div class="text-xs text-slate-500">2025</div>
+            <div class="text-xs text-slate-500">PWA</div>
           </div>
-          <div>
-            <a href="post.html?slug=building-accessible-qibla-compass" class="text-xl font-semibold hover:text-emerald-600">Building an Accessible Qibla Compass</a>
-            <div class="text-xs text-slate-500 mt-1">Nov 08, 2024 • Accessibility</div>
-            <p class="mt-2 text-slate-600 dark:text-slate-300">Accessibility-first approach for spatial tools: semantic markup, keyboard support and graceful geolocation fallbacks.</p>
-            <div class="mt-3">
-              <a class="text-emerald-600 text-sm" href="post.html?slug=building-accessible-qibla-compass">Read →</a>
+
+          <div class="grow flex items-center justify-center">
+            <div class="w-36 h-36 rounded-lg pattern-bg flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-24 h-24"><circle cx="50" cy="50" r="18" stroke="currentColor" fill="none"/></svg>
             </div>
+          </div>
+
+          <div class="mt-4">
+            <h3 class="font-semibold">Hadith Search (PWA)</h3>
+            <p class="text-xs text-slate-500 mt-1">Fast offline search & progressive loading.</p>
+          </div>
+
+          <div class="mt-3 flex gap-2">
+            <button class="text-xs px-3 py-1 rounded border focus-ring openProject">Open</button>
+            <a href="#" class="text-xs px-3 py-1 rounded border">Repo</a>
           </div>
         </div>
       </article>
     </section>
   </main>
 
+  <!-- Project modal (hidden) -->
+  <div id="projectModal" class="fixed inset-0 hidden items-center justify-center z-50" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop absolute inset-0"></div>
+    <div class="relative z-10 max-w-3xl w-full mx-6">
+      <div class="bg-white/90 dark:bg-slate-900/90 rounded-2xl p-6 border border-white/5 shadow-xl">
+        <header class="flex items-start justify-between gap-4">
+          <div>
+            <h2 id="modalTitle" class="text-xl font-semibold"></h2>
+            <div id="modalMeta" class="text-xs text-slate-500 mt-1"></div>
+          </div>
+          <button id="modalClose" class="p-2 rounded focus-ring" aria-label="Close">✕</button>
+        </header>
+
+        <div id="modalBody" class="mt-4 text-slate-600 dark:text-slate-300"></div>
+
+        <div class="mt-4 flex gap-3">
+          <a id="modalRepo" href="#" class="px-3 py-2 rounded border">Repository</a>
+          <a id="modalLive" href="#" class="px-3 py-2 rounded border">Live demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // reveal
-    const ro = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');})},{threshold:0.12});
-    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+    // reveals
+    const ro = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+    // open project modal
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalMeta = document.getElementById('modalMeta');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModalFromTile(tile){
+      modalTitle.textContent = tile.dataset.title;
+      modalBody.textContent = tile.dataset.desc;
+      modalMeta.textContent = `${tile.dataset.year} • ${tile.dataset.tags}`;
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('button')?.focus();
+    }
+    function closeModal(){
+      modal.classList.add('hidden');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.openProject').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const tile = e.target.closest('[data-title]');
+        openModalFromTile(tile);
+      });
+    });
+
+    // allow Enter on tile to open
+    document.querySelectorAll('[data-title]').forEach(tile => {
+      tile.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') openModalFromTile(tile);
+      });
+      tile.addEventListener('dblclick', () => openModalFromTile(tile));
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e)=>{if(e.key==='Escape') closeModal();});
+    modal.addEventListener('click', (ev)=>{
+      if(ev.target === modal) closeModal();
+    });
   </script>
 </body>
 </html>

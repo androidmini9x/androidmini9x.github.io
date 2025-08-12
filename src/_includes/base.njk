@@ -64,6 +64,28 @@
             }
             prevScrollPos = currentScrollPos;
         };
+
+
+        // Switch language
+        const languageSelect = document.getElementById('languageSelect');
+        const savedLang = localStorage.getItem('lang') || 'en';
+        const homeI18n = {
+            'en': '/',
+            'ar': '/ar'
+        }
+        // Move user to correct page based on savedLange
+        if (savedLang != languageSelect.value && window.location.pathname == '/') {
+            window.location.href = window.location.origin + homeI18n[savedLang];
+        } else {
+            languageSelect.value = savedLang;
+        }
+        
+        languageSelect.addEventListener('change', () => {
+            const lang = languageSelect.value;
+            localStorage.setItem('lang', lang);
+            window.location.href = window.location.origin + homeI18n[lang];
+        });
+    
     </script>
 </body>
 

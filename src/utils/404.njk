@@ -1,10 +1,18 @@
 ---
 eleventyExcludeFromCollections: true
 permalink: /404.html
-title: Ooooops
+title: Ooooops Page not found
+layout: base.njk
 ---
 
-<div class="content page pt-4">
-    Sorry, this site doesn't exist.<br /><br />
-    <img src="/assets/images/404.png" alt="Sad panda can't find this site" />
+<div class="min-h-screen flex flex-col items-center justify-center  text-center px-4">
+    <h1 class="text-8xl font-extrabold text-blue-500 animate-bounce">404</h1>
+    <p class="mt-4 text-2xl font-semibold text-gray-700">Oops! Page not found</p>
+    <p class="mt-2 text-gray-500">Sorry, this site doesn't exist or the link may be broken.</p>
+    <img src="/assets/images/404.png" alt="Sad panda can't find this site" 
+         class="mt-6 w-64 h-auto animate-pulse" />
+    <a href="/" 
+       class="mt-6 inline-block px-6 py-3 text-white bg-emerald-600 rounded-lg shadow hover:bg-emerald-300 transition-transform transform hover:scale-105">
+       Go Back Home
+    </a>
 </div>

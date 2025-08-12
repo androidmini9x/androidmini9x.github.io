@@ -1,0 +1,93 @@
+---
+eleventyExcludeFromCollections: true
+layout: base.njk
+title: Blog — Abuobaida
+pagination:
+  data: collections.posts_ar
+  size: 5
+  alias: posts
+  reverse: true
+meta:
+  robots:
+    value: noindex
+---
+
+<main class="max-w-6xl mx-auto px-6 py-10">
+	<h1 class="text-3xl font-extrabold">Articles</h1>
+	<p class="text-slate-600 dark:text-slate-300 mt-2 max-w-prose">Thoughts on design, accessibility, and building
+		respectful tech grounded in Islamic aesthetics.</p>
+
+	<section class="mt-8">
+		{% for post in posts %}
+		<!-- Post card -->
+		 <article class="card bg-white/70 dark:bg-slate-900/60 p-8 reveal rounded-none border-l-8 mt-4">
+			<div class="flex items-start gap-4">
+				<div class="w-16 h-16 rounded-lg flex items-center justify-center">
+					<svg class="w-10 h-10" viewBox="0 0 24 24" fill="none">
+						<path d="M12 2 L20 8 L12 14 L4 8 Z" stroke="currentColor" />
+					</svg>
+				</div>
+				<div>
+					<a href="{{ post.url | url }}">{{ post.data.title }}</a>
+					<div class="text-xs text-slate-500 mt-1">{{ post.date | readableDateEN }} • UI / Design</div>
+					<p class="mt-2 text-slate-600 dark:text-slate-300">{% excerpt post %}</p>
+					<div class="mt-3">
+						<a class="text-emerald-600 text-sm"
+							href="post.html?slug=design-principles-from-islamic-geometry">Read →</a>
+					</div>
+				</div>
+			</div>
+		</article>
+		{% endfor %}
+	</section>
+
+	<!-- Pagination -->
+
+	<div class="mt-2 mx-8 lg:mr-32">
+		<ul class="pagination flex list-none center pb-8 font-light dark:font-extralight">
+			{% if pagination.pageNumber > 0 %}
+			<li class="mr-3">
+				<div class="leading-relaxed">
+					{% if not pagination.href.first %}
+					<span class="block cursor-not-allowed">&lt;&lt;</a>
+					{% else %}
+					<a href="{{ pagination.href.first }}" class="block hover:no-underline">&lt;&lt;</a>
+					{% endif %}
+				</div>
+			</li>
+			<li class="mr-3">
+				<div class="leading-relaxed">
+					{% if not pagination.href.previous %}
+					<span class="block cursor-not-allowed">&lt;</a>
+					{% else %}
+					<a href="{{ pagination.href.previous }}" class="block hover:no-underline">&lt;</a>
+					{% endif %}
+				</div>
+			</li>
+			{% endif %}
+			{% for pageEntry in pagination.pages %}
+			{% if loop.index0 < 6  and pagination.hrefs[loop.index0 + pagination.pageNumber] %}
+			<li class="mr-3">
+				<div class="leading-pagination{% if pagination.hrefs[loop.index0 + pagination.pageNumber] === page.url %} active{% endif %}">
+					<a href="{{ pagination.hrefs[loop.index0 + pagination.pageNumber] }}" class="block hover:no-underline">{{ loop.index + pagination.pageNumber }}</a>
+				</div>
+			</li>
+			{% endif %}
+			{% endfor %}
+			{% if (pagination.pageNumber + 5) < pagination.pages.length %}
+			<li class="mr-3">
+				<div class="leading-relaxed">
+					<a href="{{ pagination.href.next }}" class="block hover:no-underline">&gt;</a>
+				</div>
+			</li>
+			<li class="mr-3">
+				<div class="leading-relaxed">
+					<a href="{{ pagination.href.last }}" class="block hover:no-underline">&gt;&gt;</a>
+				</div>
+			</li>
+			{% endif %}
+		</ul>
+	</div>
+</main>
+
+

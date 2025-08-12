@@ -46,3 +46,58 @@
 .delay-3 { animation-delay: 0.6s; }
 
 .card { overflow: hidden; }
+
+
+/* Content area */
+
+.content a {
+    @apply text-indigo-900 dark:text-indigo-300 underline;
+}
+
+.content blockquote {
+    @apply border-r-2 border-gray-300 dark:border-gray-600 my-4;
+}
+
+.content blockquote > p {
+    @apply mr-4 py-2;
+}
+
+.page h1 {
+    @apply text-2xl py-2 mt-4 ;
+}
+
+.content h2 {
+    @apply text-xl mt-6 font-semibold;
+}
+
+.content h3 {
+    @apply text-lg mt-6 font-semibold;
+}
+
+.content ol {
+    @apply list-decimal pr-10 leading-8;
+}
+
+.content ul {
+    @apply list-disc pr-10 leading-8;
+}
+
+.content table {
+    @apply table-auto w-full;
+}
+
+.content table thead tr {
+    @apply leading-12;
+}
+
+.content table tbody tr:nth-child(even) {
+    @apply dark:bg-dark-heading;
+}
+
+.content table tbody tr:nth-child(odd) {
+    @apply bg-gray-100 dark:bg-sidebar-dark;
+}
+
+.content img {
+    max-width: 100%;
+}
